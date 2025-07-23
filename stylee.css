@@ -230,3 +230,66 @@ nav ul li:hover {
 .header-btn:hover {
   background-color: #fc6f41;
 }
+
+
+.affilates {
+  width: 100%;
+  height: 90vh;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 90px;
+}
+
+.affilates .heading {
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 3rem;
+  text-decoration: underline;
+}
+
+.affilates h4 {
+  text-align: center;
+  margin-bottom: rem;
+  font-size: 1.5rem;
+}
+
+.affilates p {
+  text-align: center;
+  margin-bottom: rem;
+  font-size: 1rem;
+}
+
+.affilates-box {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+.affilates-box .box {
+  background-color: #f5eedf;
+  width: 300px;
+  height: 425px;
+  margin: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 2rem;
+  box-shadow: 5px 10px 30px rgba(252, 59, 0, 0.397);
+}
+
+.affilates-box .box h4 {
+  text-decoration: underline;
+}
+
+.affilates-box img {
+  height: 10rem;
+  width: 10rem;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
