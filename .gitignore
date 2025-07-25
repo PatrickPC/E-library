@@ -1,0 +1,4 @@
+
+# Ignore database connection file 
+
+components/connect.php
