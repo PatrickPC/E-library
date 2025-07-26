@@ -140,6 +140,11 @@ if (isset($_SESSION['user_id']) &&
             </nav>
         </div>
 
+      
+
+
+
+
        <form action="search.php"
              method="get" 
              style="width: 100%; max-width: 30rem">
@@ -161,7 +166,7 @@ if (isset($_SESSION['user_id']) &&
 		  </button>
 		</div>
        </form>
-	   <div class="mt-5"></div>
+       <div class="mt-5"></div>
         <?php if (isset($_GET['error'])) { ?>
           <div class="alert alert-danger" role="alert">
 			  <?=htmlspecialchars($_GET['error']); ?>
@@ -258,8 +263,7 @@ if (isset($_SESSION['user_id']) &&
 		</table>
 	   <?php }?>
 
-
-	    <?php  if ($categories == 0) { ?>
+        <?php  if ($categories == 0) { ?>
         	<div class="alert alert-warning 
         	            text-center p-5" 
         	     role="alert">
@@ -302,8 +306,52 @@ if (isset($_SESSION['user_id']) &&
 			</tbody>
 		</table>
 	    <?php } ?>
-       
-	
+
+	    <?php  if ($authors == 0) { ?>
+        	<div class="alert alert-warning 
+        	            text-center p-5" 
+        	     role="alert">
+        	     <img src="img/empty.png" 
+        	          width="100">
+        	     <br>
+			  There is no Writer in the database
+		    </div>
+        <?php }else {?>
+	    <!-- List of all Authors -->
+		<h4 class="mt-5">All Writer</h4>
+         <table class="table table-bordered shadow">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Writer Name</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php 
+				$k = 0;
+				foreach ($authors as $author ) {
+				$k++;	
+				?>
+				<tr>
+					<td><?=$k?></td>
+					<td><?=$author['name']?></td>
+					<td>
+						<a href="edit-author.php?id=<?=$author['id']?>" 
+						   class="btn btn-warning">
+						   Edit</a>
+
+						<a href="php/delete-author.php?id=<?=$author['id']?>" 
+						   class="btn btn-danger">
+					       Delete</a>
+					</td>
+				</tr>
+			    <?php } ?>
+			</tbody>
+		</table> 
+		<?php } ?>
+	</div>
+
 
 	
        <script src="assets/js/main.js"></script>
