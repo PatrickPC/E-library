@@ -257,6 +257,51 @@ if (isset($_SESSION['user_id']) &&
 			</tbody>
 		</table>
 	   <?php }?>
+
+
+	    <?php  if ($categories == 0) { ?>
+        	<div class="alert alert-warning 
+        	            text-center p-5" 
+        	     role="alert">
+        	     <img src="img/empty.png" 
+        	          width="100">
+        	     <br>
+			  There is no Category Category in the database
+		    </div>
+        <?php }else {?>
+	    <!-- List of all categories -->
+		<h4 class="mt-5">All Category </h4>
+		<table class="table table-bordered shadow">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Category  </th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php 
+				$j = 0;
+				foreach ($categories as $category ) {
+				$j++;	
+				?>
+				<tr>
+					<td><?=$j?></td>
+					<td><?=$category['name']?></td>
+					<td>
+						<a href="edit-category.php?id=<?=$category['id']?>" 
+						   class="btn btn-warning">
+						   Edit</a>
+
+						<a href="php/delete-category.php?id=<?=$category['id']?>" 
+						   class="btn btn-danger">
+					       Delete</a>
+					</td>
+				</tr>
+			    <?php } ?>
+			</tbody>
+		</table>
+	    <?php } ?>
        
 	
 
