@@ -161,6 +161,102 @@ if (isset($_SESSION['user_id']) &&
 		  </button>
 		</div>
        </form>
+	   <div class="mt-5"></div>
+        <?php if (isset($_GET['error'])) { ?>
+          <div class="alert alert-danger" role="alert">
+			  <?=htmlspecialchars($_GET['error']); ?>
+		  </div>
+		<?php } ?>
+		<?php if (isset($_GET['success'])) { ?>
+          <div class="alert alert-success" role="alert">
+			  <?=htmlspecialchars($_GET['success']); ?>
+		  </div>
+		<?php } ?>
+
+
+        <?php  if ($books == 0) { ?>
+        	<div class="alert alert-warning 
+        	            text-center p-5" 
+        	     role="alert">
+        	     <img src="img/empty.png" 
+        	          width="100">
+        	     <br>
+			  There is no Book in the database
+		  </div>
+        <?php }else {?>
+
+
+        <!-- List of all books -->
+		<h4>All Category</h4>
+		<table class="table table-bordered shadow">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Book</th>
+					<th>Writer</th>
+					<th>Description</th>
+					<th>Category </th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+			  <?php 
+			  $i = 0;
+			  foreach ($books as $book) {
+			    $i++;
+			  ?>
+			  <tr>
+				<td><?=$i?></td>
+				<td>
+					<img width="100"
+					     src="uploads/cover/<?=$book['cover']?>" >
+					<a  class="link-dark d-block
+					           text-center"
+					    href="uploads/files/<?=$book['file']?>">
+					   <?=$book['title']?>	
+					</a>
+						
+				</td>
+				<td>
+					<?php if ($authors == 0) {
+						echo "Undefined";}else{ 
+
+					    foreach ($authors as $author) {
+					    	if ($author['id'] == $book['author_id']) {
+					    		echo $author['name'];
+					    	}
+					    }
+					}
+					?>
+
+				</td>
+				<td><?=$book['description']?></td>
+				<td>
+					<?php if ($categories == 0) {
+						echo "Undefined";}else{ 
+
+					    foreach ($categories as $category) {
+					    	if ($category['id'] == $book['category_id']) {
+					    		echo $category['name'];
+					    	}
+					    }
+					}
+					?>
+				</td>
+				<td>
+					<a href="edit-book.php?id=<?=$book['id']?>" 
+					   class="btn btn-warning">
+					   Edit</a>
+
+					<a href="php/delete-book.php?id=<?=$book['id']?>" 
+					   class="btn btn-danger">
+				       Delete</a>
+				</td>
+			  </tr>
+			  <?php } ?>
+			</tbody>
+		</table>
+	   <?php }?>
        
 	
 
