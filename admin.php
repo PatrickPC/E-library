@@ -1,0 +1,176 @@
+<?php  
+session_start();
+
+# If the admin is logged in
+if (isset($_SESSION['user_id']) &&
+    isset($_SESSION['user_email'])) {
+
+	# Database Connection File
+	include "db_conn.php";
+
+	# Book helper function
+	include "php/func-book.php";
+    $books = get_all_books($conn);
+
+    # author helper function
+	include "php/func-author.php";
+    $authors = get_all_author($conn);
+
+    # Category helper function
+	include "php/func-category.php";
+    $categories = get_all_categories($conn);
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ADMIN</title>
+
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- bootstrap 5 CDN-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <!-- bootstrap 5 Js bundle CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="assets/css/style.scss">
+</head>
+<body>
+	<div class="container">
+		<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+		  <div class="container-fluid">
+		    <a class="navbar-brand" href="admin.php">Admin</a>
+		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		      <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse navbar-collapse" 
+		         id="navbarSupportedContent">
+		      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+		        <li class="nav-item">
+		          <a class="nav-link" 
+		             aria-current="page" 
+		             href="index.php">Store</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" 
+		             href="add-book.php">Add Book</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" 
+		             href="add-category.php">Add Category</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" 
+		             href="add-author.php">Add Author</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" 
+		             href="logout.php">Logout</a>
+		        </li>
+		      </ul>
+		    </div>
+		  </div>
+		</nav> -->
+
+
+
+
+
+		<body id="body-pd">
+        <header class="header" id="header">
+            <div class="header__toggle">
+                <i class='bx bx-menu' id="header-toggle"></i>
+            </div>
+
+            <div class="header__img">
+                <img src="assets/img/perfil.jpg" alt="">
+            </div>
+        </header>
+
+        <div class="l-navbar" id="nav-bar">
+            <nav class="nav">
+                <div>
+                    <a href="admin.php" class="nav__logo">
+						
+                        <i class='bx bx-layer nav__logo-icon'></i>
+                        <span class="nav__logo-name">Admin</span>
+                    </a>
+
+                    <div class="nav__list">
+                        <a href="#" class="nav__link active">
+                        <i class='bx bx-grid-alt nav__icon' ></i>
+                            <span class="nav__name">Dashboard</span>
+                        </a>
+
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-user nav__icon' ></i>
+                            <span class="nav__name">Users</span>
+                        </a>
+                        
+                        <a href="#" class="nav__link">
+							<i class='bx bx-clipboard'></i>
+                            <span class="nav__name">Verify</span>
+                        </a>
+                
+                        <a href="add-book.php" class="nav__link">
+                            <i class='bx bx-folder nav__icon' ></i>
+                            <span class="nav__name">Upload Book</span>
+                        </a>
+
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-bar-chart-alt-2 nav__icon' ></i>
+                            <span class="nav__name">Analytics</span>
+                        </a>
+
+						<a href="index.php" class="nav__link">
+						<i class='bx bx-home'></i>
+                            <span class="nav__name">Home</span>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="logout.php" class="nav__link">
+                    <i class='bx bx-log-out nav__icon' ></i>
+                    <span class="nav__name">Log Out</span>
+                </a>
+            </nav>
+        </div>
+
+       <form action="search.php"
+             method="get" 
+             style="width: 100%; max-width: 30rem">
+
+       	<div class="input-group my-5">
+		  <input type="text" 
+		         class="form-control"
+		         name="key" 
+		         placeholder="Search..." 
+		         aria-label="Search..." 
+		         aria-describedby="basic-addon2">
+
+		  <button class="input-group-text
+		                 btn btn-primary" 
+		          id="basic-addon2">
+		          <img src="img/search.png"
+		               width="20">
+
+		  </button>
+		</div>
+       </form>
+       
+	
+
+	
+       <script src="assets/js/main.js"></script>
+
+</body>
+</html>
+
+<?php }else{
+  header("Location: login.php");
+  exit;
+} ?>
