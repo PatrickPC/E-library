@@ -52,3 +52,18 @@ function search_books($con, $key){
 
    return $books;
 }
+
+# get books by category
+function get_books_by_category($con, $id){
+   $sql  = "SELECT * FROM books WHERE category_id=?";
+   $stmt = $con->prepare($sql);
+   $stmt->execute([$id]);
+
+   if ($stmt->rowCount() > 0) {
+        $books = $stmt->fetchAll();
+   }else {
+      $books = 0;
+   }
+
+   return $books;
+}
